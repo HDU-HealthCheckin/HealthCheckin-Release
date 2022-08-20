@@ -3,6 +3,8 @@
 - [x] 杭电新自动打卡
 - [x] Telegram 机器人
 - [x] Uptime Kuma 推送
+- [x] 自动更新
+- [x] 实现指数退避的重试
 
 ## 配置文件
 
@@ -14,8 +16,6 @@
 - `/etc/HealthCheckin/config.[yaml/json/etc]`
 
 以下以 yaml 为例，你也可参照项目下的 `config.example.yaml` 文件，按照自己的需要来配置，记得删去 `.example`。
-
-```yaml
 
 ### 必填设置
 
@@ -35,6 +35,8 @@ profile:
 其中，`tgbot.token` 和 `uptimekuma.url` 若为空字符串，则禁用对应的模块。
 
 ```yaml
+general:
+  auto_update: false               # 是否自动更新 默认为true 自动更新
 cron:                            # 计划任务
   time: "30 6 * * *"               # 计划任务开始时间，遵循 cron 格式
   random_min: 0                    # 随机延迟最小值（单位：秒）
@@ -63,7 +65,7 @@ uptimekuma:                      # Uptime Kuma 推送
 
 以下命令请使用 root 权限执行。
 
-```
+```shell
 wget -O /usr/local/bin/HealthCheckin https://github.com/HDU-HealthCheckin/HealthCheckin-Release/releases/latest/download/HealthCheckin_linux_amd64 && chmod +x /usr/local/bin/HealthCheckin
 vi /etc/HealthCheckin/config.yaml
 ```
@@ -94,7 +96,7 @@ vi /etc/HealthCheckin/config.yaml
 
 4. 使用 `docker build` 与 `docker run` 进行部署：
 
-    ```
+    ```shell
     docker build -t <image_name> .
     docker run -itd -v /etc/HealthCheckin/config.yaml:/config.yaml <image_name>
     ```
