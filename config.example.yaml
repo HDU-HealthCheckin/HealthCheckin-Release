@@ -6,7 +6,7 @@ profile:
 # 以下选项均选填，下方模板中的值即为默认值。
 # 其中，tgbot.token 和 uptimekuma.url 若为空字符串，则禁用对应的模块。
 general:
-  auto_update: false               # 是否自动更新 默认为true 自动更新
+  auto_update: true                # 是否自动更新 默认为true 自动更新
 cron:                            # 计划任务
   time: "30 6 * * *"               # 计划任务开始时间，遵循 cron 格式
   random_min: 0                    # 随机延迟最小值（单位：秒）
