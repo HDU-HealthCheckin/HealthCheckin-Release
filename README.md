@@ -76,6 +76,7 @@ vi /etc/HealthCheckin/config.yaml
 
 可以使用下列命令进行简单的服务管理：
 
+- `HealthCheckin version`: 查看当前二进制版本
 - `HealthCheckin install` 注册服务
 - `HealthCheckin remove` 移除服务
 - `HealthCheckin start` 启动
