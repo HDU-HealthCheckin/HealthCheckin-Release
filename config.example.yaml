@@ -11,7 +11,7 @@ cron:                            # 计划任务
   time: "30 6 * * *"               # 计划任务开始时间，遵循 cron 格式
   random_min: 0                    # 随机延迟最小值（单位：秒）
   random_max: 3600                 # 随机延迟最大值（单位：秒）
-  retry: 3                         # 最大重试次数 0 表示不重试 (默认 3) 推荐小于8
+  retry: 5                         # 最大重试次数 0 表示不重试 (默认 5) 推荐小于8
   retry_interval: 5                # 最小重试间隔（单位：秒）
 tgbot:                           # Telegram 推送
   token: ""                        # 机器人 Token
