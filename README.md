@@ -10,7 +10,7 @@
 
 配置文件使用 [viper](https://github.com/spf13/viper) 处理，任何它可识别的格式均可用。
 
-在以下位置的配置文件会生效：
+在以下位置的配置文件会生效:
 
 - `./config.[yaml/json/etc]`
 - `/etc/HealthCheckin/config.[yaml/json/etc]`
@@ -32,27 +32,32 @@ profile:
 
 以下选项均选填，下方模板中的值即为默认值。
 
-其中，`tgbot.token` 和 `uptimekuma.url` 若为空字符串，则禁用对应的模块。
+其中，`tgbot.token`, `uptimekuma.url` 和 `heartbeat.url` 若为空字符串，则禁用对应的模块。
 
 ```yaml
-general:
-  auto_update: false               # 是否自动更新 默认为true 自动更新
+general:                         # 通用功能
+  auto_update: true                # 是否自动更新
 cron:                            # 计划任务
   time: "30 6 * * *"               # 计划任务开始时间，遵循 cron 格式
-  random_min: 0                    # 随机延迟最小值（单位：秒）
-  random_max: 3600                 # 随机延迟最大值（单位：秒）
-  retry: 5                         # 最大重试次数 0 表示不重试 (默认 5) 推荐小于8
-  retry_interval: 5                # 最小重试间隔（单位：秒）
+  random_min: 0                    # 随机延迟最小值 (单位: 秒)
+  random_max: 3600                 # 随机延迟最大值 (单位: 秒)
+  retry: 5                         # 最大重试次数 0 表示不重试 (默认 5) 推荐小于 8
+  retry_interval: 5                # 最小重试间隔 (单位: 秒)
 tgbot:                           # Telegram 推送
   token: ""                        # 机器人 Token
   chatid: 0                        # Chat ID
   endpoint: "api.telegram.org"     # Telegram Bot API Endpoint
-  timeout: 10                      # Timeout 时间（单位：秒）
+  timeout: 10                      # Timeout 时间 (单位: 秒)
   retry: 5                         # 最大重试次数
 uptimekuma:                      # Uptime Kuma 推送
   url: ""                          # Uptime Kuma Push 地址
-  timeout: 10                      # Timeout 时间（单位：秒）
+  timeout: 10                      # Timeout 时间 (单位: 秒)
   retry: 5                         # 最大重试次数
+heartbeat:                       # 心跳
+  url: ""                          # 心跳请求 Push 地址
+  timeout: 10                      # Timeout 时间 (单位: 秒)
+  retry: 5                         # 最大重试次数
+  time: "0 * * * *"                # 时间，遵循 cron 格式
 ```
 
 ## 使用方式
@@ -74,7 +79,7 @@ vi /etc/HealthCheckin/config.yaml
 
 #### Systemd daemon
 
-可以使用下列命令进行简单的服务管理：
+可以使用下列命令进行简单的服务管理:
 
 - `HealthCheckin version`: 查看当前二进制版本
 - `HealthCheckin install` 注册服务
@@ -95,7 +100,7 @@ vi /etc/HealthCheckin/config.yaml
 
 3. 修改配置后保存到 `/etc/HealthCheckin/config.yaml`
 
-4. 使用 `docker build` 与 `docker run` 进行部署：
+4. 使用 `docker build` 与 `docker run` 进行部署:
 
     ```shell
     docker build -t <image_name> .
