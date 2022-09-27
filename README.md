@@ -2,6 +2,7 @@
 
 - [x] 杭电新自动打卡
 - [x] Telegram 机器人
+- [x] 钉钉群机器人
 - [x] Uptime Kuma 推送
 - [x] 自动更新
 - [x] 实现指数退避的重试
@@ -32,7 +33,7 @@ profile:
 
 以下选项均选填，下方模板中的值即为默认值。
 
-其中，`tgbot.token`, `uptimekuma.url` 和 `heartbeat.url` 若为空字符串，则禁用对应的模块。
+其中，`tgbot.token`, `dingtalk.token`, `uptimekuma.url` 和 `heartbeat.url` 若为空字符串，则禁用对应的模块。
 
 ```yaml
 general:                         # 通用功能
@@ -49,6 +50,12 @@ tgbot:                           # Telegram 推送
   endpoint: "api.telegram.org"     # Telegram Bot API Endpoint
   timeout: 10                      # Timeout 时间 (单位: 秒)
   retry: 5                         # 最大重试次数
+dingtalk:                        # 钉钉群自定义机器人推送 https://open.dingtalk.com/document/robots/custom-robot-access
+   token: ""                        # 钉钉机器人 Token（webhook url 最后那部分）
+   endpoint: "oapi.dingtalk.com"    # 钉钉机器人 API Endpoint
+   secret: ""                       # 钉钉机器人 Secret
+   timeout: 10                      # Timeout 时间 (单位: 秒)
+   retry: 5                         # 最大重试次数
 uptimekuma:                      # Uptime Kuma 推送
   url: ""                          # Uptime Kuma Push 地址
   timeout: 10                      # Timeout 时间 (单位: 秒)
@@ -104,7 +111,10 @@ vi /etc/HealthCheckin/config.yaml
 
     ```shell
     docker build -t <image_name> .
-    docker run -itd -v /etc/HealthCheckin/config.yaml:/config.yaml <image_name>
+    docker run -itd -v /etc/HealthCheckin/config.yaml:/config.yaml \
+          -v /etc/timezone:/etc/timezone:ro \
+          -v /etc/localtime:/etc/localtime:ro \
+          --name=<container_name> <image_name>
     ```
 
 具体可以参考 Dockerfile。
