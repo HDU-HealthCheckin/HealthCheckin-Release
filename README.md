@@ -137,6 +137,11 @@ vi /etc/HealthCheckin/config.yaml
 
 #### Docker compose 多账号部署
 
+> 鉴于已支持同一个配置文件中配置多个账号，因此不再推荐使用多个配置文件、一个配置文件一个用户的方式进行部署。
+> 如果你有如下需求之一，可以使用这种方式部署：
+> 1. 配置文件完全独立，如设置不同的通知渠道、不同的打卡时间等。
+> 2. 闲得蛋疼
+
 1. 参考 [Docker daemon](#docker-daemon) 完成第1-3步。
 2. 修改 [docker-compose.yml](https://raw.githubusercontent.com/HDU-HealthCheckin/HealthCheckin-Release/master/docker-compose.yml) 中的配置，一个 service 代表一个账号，尤其是 volumes 中的源配置文件路径。
 3. 命令
