@@ -131,6 +131,22 @@ vi /etc/HealthCheckin/config.yaml
 
 具体可以参考 Dockerfile。
 
+5. 命令：
+
+* 查看日志：`docker logs -f <container_name>`
+
+#### Docker compose 多账号部署
+
+1. 参考 [Docker daemon](#docker-daemon) 完成第1-3步。
+2. 修改 [docker-compose.yml](https://raw.githubusercontent.com/HDU-HealthCheckin/HealthCheckin-Release/master/docker-compose.yml) 中的配置，一个 service 代表一个账号，尤其是 volumes 中的源配置文件路径。
+3. 命令
+
+* 运行所有 Service：`docker-compose up -d`
+* 运行指定 Service：`docker-compose up -d <service_name>`
+* 停止所有 Service：`docker-compose down`
+* 查看所有 Service 状态：`docker-compose ps`
+* 查看所有 Service 日志：`docker-compose logs -f`
+
 ## 致谢
 
 - [hduLib/hdu](https://github.com/hduLib/hdu)
