@@ -21,9 +21,14 @@
 ### 必填设置
 
 ```yaml
-profile:
-  username: "xxxxxxxx"
-  password: "xxxxxxxx"
+profiles: # 推荐使用该方式配置
+   - username: "xxxxxxxx" # 学号
+     password: "xxxxxxxx" # 上课啦密码
+   - username: "xxxxxxxx" # 学号
+     password: "xxxxxxxx" # 上课啦密码
+profile: # 该方式已过时 但是仍然兼容
+   username: "xxxxxxxx" # 学号
+   password: "xxxxxxxx" # 上课啦密码
 ```
 
 - `username`: 学号
@@ -94,9 +99,10 @@ vi /etc/HealthCheckin/config.yaml
 
 可以使用下列命令进行简单的服务管理:
 
-- `HealthCheckin version`: 查看当前二进制版本
+- `HealthCheckin version` 查看当前二进制版本
 - `HealthCheckin install` 注册服务
 - `HealthCheckin remove` 移除服务
+- `HealthCheckin run` 立即执行一次打卡
 - `HealthCheckin start` 启动
 - `HealthCheckin stop` 停止
 - `HealthCheckin status` 查看服务状态
