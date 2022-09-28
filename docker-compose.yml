@@ -1,0 +1,21 @@
+version: "3"
+services:
+  health_checkin_01: # 修改service名，以便区分
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: health_checkin
+    container_name: health_checkin_01 # 修改容器名，以便区分
+    restart: always
+    volumes:
+      - /etc/HealthCheckin/config.yaml:/config.yaml #修改 ":" 左侧的源配置文件路径，对应多账号
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+  health_checkin_02:  # 修改service名，以便区分
+    image: health_checkin
+    container_name: health_checkin_02 # 修改容器名，以便区分
+    restart: always
+    volumes:
+      - /etc/HealthCheckin/config_02.yaml:/config.yaml  #修改 ":" 左侧的源配置文件路径，对应多账号
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
