@@ -69,6 +69,12 @@ heartbeat:                       # 心跳
 
 ## 使用方式
 
+### 手动打卡
+
+使用 `HealthCheckin now` 可立即完成一次打卡。
+
+此时不会自动重试，如打卡失败可手工重新打卡。
+
 ### 安装与注册
 
 预编译版本可前往 [GitHub Release](https://github.com/HDU-HealthCheckin/HealthCheckin-Release/releases/latest) 查看。
