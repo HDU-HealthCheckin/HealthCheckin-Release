@@ -11,10 +11,13 @@ profiles: # 推荐使用该方式配置
 # 其中，tgbot.token, dingtalk.token, uptimekuma.url 和 heartbeat.url 若为空字符串，则禁用对应的模块。
 general:                         # 通用功能
   auto_update: true                # 是否自动更新
+  proxy:                           # 自动更新代理。如不设置该项目则默认为 "https://ghproxy.homeboyc.cn/"，兼容本工具的代理 https://github.com/asjdf/ghproxy
+    - "https://ghproxy.homeboyc.cn/" # 你可以设置多个代理，程序如遇到更新失败将会逐个尝试，直至直接访问 GitHub
 cron:                            # 计划任务
   time: "30 6 * * *"               # 计划任务开始时间，遵循 cron 格式
   random_min: 0                    # 随机延迟最小值 (单位: 秒)
   random_max: 3600                 # 随机延迟最大值 (单位: 秒)
+  multi_user_interval: 60          # 多账号间会增加随机延迟，此值设定所有账户最多在多久内打完卡 (单位: 秒)
   retry: 5                         # 最大重试次数 0 表示不重试 (默认 5) 推荐小于 8
   retry_interval: 5                # 最小重试间隔 (单位: 秒)
 tgbot:                           # Telegram 推送
