@@ -1,11 +1,13 @@
 # 杭电自动健康打卡
 
 - [x] 杭电新自动打卡
+- [x] 青年大学习每日打卡与每周学习
 - [x] Telegram 机器人
 - [x] 钉钉群机器人
 - [x] Uptime Kuma 推送
 - [x] 自动更新
 - [x] 实现指数退避的重试
+- [ ] 更优雅的启动
 
 ## 配置文件
 
@@ -18,7 +20,7 @@
 
 以下以 yaml 为例，你也可参照项目下的 `config.example.yaml` 文件，按照自己的需要来配置，记得删去 `.example`。
 
-### 必填设置
+### 关键设置
 
 ```yaml
 profiles: # 推荐使用该方式配置
@@ -29,10 +31,14 @@ profiles: # 推荐使用该方式配置
 profile: # 该方式已过时 但是仍然兼容
    username: "xxxxxxxx" # 学号
    password: "xxxxxxxx" # 上课啦密码
-```
 
-- `username`: 学号
-- `password`: 上课啦密码
+# 该配置为青年大学习配置 和每日健康打卡一同运行 你可以使用微信访问该链接以获取你的配置信息 该纯静态页不会记录你的个人信息 如实在担心隐私问题也可以自行接收回调信息
+# https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx56b888a1409a2920&component_appid=wx0f0063354bfd3d19&connect_redirect=1&redirect_uri=https%3A%2F%2Fwx.yunban.cn%2Fwx%2FoauthInfoCallback%3Fr_uri%3Dhttps%253A%252F%252Fget-params.homeboyc.cn%252F%26source%3Dcommon&response_type=code&scope=snsapi_userinfo&state=STATE
+youth_study_profiles:
+   - openID: "oO-fooooooooooooooooobar"
+     nickName: "%E9%9B%B7%E5%AD%90%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6"
+     headImg: "https%3A%2F%2Fthirdwx.qlogo.cn%2Fmmopen%2Fvi_32%2Foffffffffffffffffffffffffffffxvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv%2F132"
+```
 
 ### 选填设置
 
