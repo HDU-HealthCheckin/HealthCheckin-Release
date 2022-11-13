@@ -5,6 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile
     image: health_checkin
+    # 如果你是 x86_64 amd64 用户不需要 build 
+    # 可以使用
+    # image: hduhealthcheckin/checkin-container
     container_name: health_checkin_01 # 修改容器名，以便区分
     restart: always
     volumes:
