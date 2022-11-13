@@ -55,7 +55,7 @@ cron:                            # 计划任务
   time: "30 6 * * *"               # 计划任务开始时间，遵循 cron 格式
   random_min: 0                    # 随机延迟最小值 (单位: 秒)
   random_max: 3600                 # 随机延迟最大值 (单位: 秒)
-  multi_user_interval: 60         # 多账号间会增加随机延迟，此值设定所有账户最多在多久内打完卡 (单位: 秒)
+  multi_user_interval: 60          # 执行now命令时多账号间的随机延迟，此值设定所有账户最多在多久内打完卡 (单位: 秒)
   retry: 5                         # 最大重试次数 0 表示不重试 (默认 5) 推荐小于 8
   retry_interval: 5                # 最小重试间隔 (单位: 秒)
 tgbot:                           # Telegram 推送
@@ -91,6 +91,8 @@ heartbeat:                       # 心跳
 
 ### 安装与注册
 
+#### Binary
+
 预编译版本可前往 [GitHub Release](https://github.com/HDU-HealthCheckin/HealthCheckin-Release/releases/latest) 查看。
 
 请自行更改下方下载链接以安装您所需的版本。
@@ -101,6 +103,15 @@ heartbeat:                       # 心跳
 wget -O /usr/local/bin/HealthCheckin https://github.com/HDU-HealthCheckin/HealthCheckin-Release/releases/latest/download/HealthCheckin_linux_amd64 && chmod +x /usr/local/bin/HealthCheckin
 vi /etc/HealthCheckin/config.yaml
 ```
+
+#### Docker
+
+```shell
+docker pull hduhealthcheckin/checkin-container
+```
+
+docker 容器 image (amd64版本) 现发布于 dockerhub
+
 
 ### 服务管理
 
